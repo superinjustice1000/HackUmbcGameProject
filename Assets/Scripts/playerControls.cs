@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class playerControls : MonoBehaviour
    
@@ -13,20 +14,25 @@ public class playerControls : MonoBehaviour
     float moveY;
     Vector2 moveVector;
     public Transform movePoint;
-
-
+    public gameManager gameMangerLink;
+    bool inTargetRange = false;
+    bool interaction;
+    
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         rbLink = GetComponent<Rigidbody2D>();
+        gameMangerLink = FindObjectOfType<gameManager>();
         movePoint.parent = null;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
@@ -50,4 +56,26 @@ public class playerControls : MonoBehaviour
 
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        var hitTag = collision.tag;
+        if (hitTag != null)
+        {
+            if(hitTag == "Target")
+            {
+                inTargetRange = true;
+                Debug.Log("IN TARGET RANGE!!!");
+                if (interaction)
+                {
+                    Debug.Log("Target Killed!!!");
+                }
+            }
+        }
+    }
+
+    public void OnFire(InputValue value)
+    {
+        
+
+    }
 }

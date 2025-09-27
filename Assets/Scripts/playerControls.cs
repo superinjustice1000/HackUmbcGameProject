@@ -17,25 +17,27 @@ public class playerControls : MonoBehaviour
     public gameManager gameMangerLink;
     bool inTargetRange = false;
     bool interaction;
+    Animator aniLink;
     
     
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         rbLink = GetComponent<Rigidbody2D>();
         gameMangerLink = FindObjectOfType<gameManager>();
         movePoint.parent = null;
+        aniLink = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
+        if (Vector3.Distance(transform.position, movePoint.position) == 0f)
         {
             if (Mathf.Abs(moveX) == 1f)
             {
@@ -46,6 +48,9 @@ public class playerControls : MonoBehaviour
                 movePoint.position += new Vector3(0, moveY);
             }
         }
+        //Debug.Log("moveX:" + moveX);
+        //Debug.Log("movY: " + moveY);
+        //Debug.Log("Distance: " + Vector3.Distance(transform.position, movePoint.position));
     }
 
     public void OnMove(InputValue value)
@@ -53,7 +58,6 @@ public class playerControls : MonoBehaviour
         moveVector = value.Get<Vector2>();
         moveX = moveVector.x;
         moveY = moveVector.y;
-
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -73,9 +77,23 @@ public class playerControls : MonoBehaviour
         }
     }
 
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        var hitTag = collision.tag;
+        if (hitTag != null)
+        {
+            if(hitTag == "Target")
+            {
+                inTargetRange = false;
+                Debug.Log("EXITING TARGET RANGE!!!");
+            }
+        }
+    }
+
     public void OnFire(InputValue value)
     {
-        
+        aniLink.SetTrigger("Attack");
+        Debug.Log("ATTACKING");
 
     }
 }

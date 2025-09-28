@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class gameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class gameManager : MonoBehaviour
     public Canvas winMenu;
     [SerializeField] GameObject playerLink;
     [SerializeField] playerControls playerControlsLink;
+    public TMP_Text TMPLink;
 
     private void Awake()
     {
@@ -18,17 +20,20 @@ public class gameManager : MonoBehaviour
         playerLink = GameObject.Find("Player");
         playerControlsLink = playerLink.GetComponent<playerControls>();
         playerControlsLink.enabled = true;
+        TMPLink.text = gameScore.ToString();
     }
 
 
     public void increaseScore(int score)
     {
         gameScore += score;
+        TMPLink.text = gameScore.ToString();
     }
 
     public void decreaseScore(int score)
     {
         gameScore -= score;
+        TMPLink.text = gameScore.ToString();
     }
 
     public int getGameScore() { return gameScore; }
@@ -36,14 +41,15 @@ public class gameManager : MonoBehaviour
     public void resetScore()
     {
         gameScore = 0;
-        Debug.Log("GAME SOCRE RESET!!!");    
+        Debug.Log("GAME SCORE RESET!!!");
+        TMPLink.text = gameScore.ToString();
     }
 
     public void gameWin()
     {
         if(winScore == gameScore) 
         {
-            Debug.Log("GAME WIN");
+            //Debug.Log("GAME WIN");
             Time.timeScale = 0f;
             winMenu.enabled = true;
             playerControlsLink.enabled = false;
@@ -55,15 +61,7 @@ public class gameManager : MonoBehaviour
         gameWin();
     }
 
-    public void loadLevel(int level)
-    {
-        SceneManager.LoadSceneAsync(level);
-    }
-
-    public void resetLevel()
-    {
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-    }
+    
 
 
 }

@@ -1,30 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class buttons : MonoBehaviour
 {
 
-    [SerializeField] gameManager gameManagerLink;
-    //public int loadlevelNumber;
-
-    private void Start()
-    {
-        gameManagerLink = FindObjectOfType<gameManager>();
-    }
     public void quit()
     {
         Application.Quit();
         Debug.Log("QUIT GAME!");
     }
 
-    public void Restart()
-    {
-        gameManagerLink.resetLevel();
-    }
-
     public void loadLevel(int level)
     {
-        gameManagerLink.loadLevel(level);
+        SceneManager.LoadSceneAsync(level);
+    }
+
+    public void resetLevel()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

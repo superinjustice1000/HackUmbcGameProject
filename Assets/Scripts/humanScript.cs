@@ -6,10 +6,12 @@ public class humanScript : MonoBehaviour
 {
     public Animator aniLink;
     bool isScraed = false;
+    public gameManager gameManagerLink;
 
     private void Start()
     {
         aniLink = GetComponent<Animator>();
+        gameManagerLink = FindObjectOfType<gameManager>();
     }
     private void Update()
     {
@@ -24,6 +26,11 @@ public class humanScript : MonoBehaviour
             if (hitTag == "Player")
             {
                 isScraed = true;
+            }
+            else if(hitTag == "Attack")
+            {
+                Destroy(gameObject);
+                gameManagerLink.increaseScore(1000);
             }
         }
     }

@@ -15,9 +15,10 @@ public class playerControls : MonoBehaviour
     Vector2 moveVector;
     public Transform movePoint;
     public gameManager gameMangerLink;
-    bool inTargetRange = false;
+    //bool inTargetRange = false;
     bool interaction;
     Animator aniLink;
+    public LayerMask mazeWalls;
     
     
 
@@ -37,15 +38,28 @@ public class playerControls : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, movePoint.position) == 0f)
+        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
             if (Mathf.Abs(moveX) == 1f)
             {
-                movePoint.position += new Vector3(moveX, 0);
+               if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(moveX, 0),.2f, mazeWalls))
+               {
+                    movePoint.position += new Vector3(moveX, 0);
+               }
+                
             }
             if (Mathf.Abs(moveY) == 1f)
             {
-                movePoint.position += new Vector3(0, moveY);
+                if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(0,moveY),.2f, mazeWalls))
+                {
+                    movePoint.position += new Vector3(0, moveY);
+                }
+                
+            }
+            if(moveVector != Vector2.zero)
+            {
+                aniLink.SetFloat("Last Horizontal", moveVector.x);
+                aniLink.SetFloat("Last Vertical", moveVector.y);
             }
         }
         //Debug.Log("moveX:" + moveX);
@@ -67,7 +81,7 @@ public class playerControls : MonoBehaviour
         {
             if(hitTag == "Target")
             {
-                inTargetRange = true;
+                //inTargetRange = true;
                 Debug.Log("IN TARGET RANGE!!!");
                 if (interaction)
                 {
@@ -84,7 +98,7 @@ public class playerControls : MonoBehaviour
         {
             if(hitTag == "Target")
             {
-                inTargetRange = false;
+                //inTargetRange = false;
                 Debug.Log("EXITING TARGET RANGE!!!");
             }
         }

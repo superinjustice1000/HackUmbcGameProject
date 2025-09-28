@@ -1058,6 +1058,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8586237618972095284, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
+      propertyPath: damageSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: eb5fa4c45c20b4a4b83a62b0e2bf7f90, type: 3}
     - target: {fileID: 9027980763042629347, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
       propertyPath: m_Name
       value: Target

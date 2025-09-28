@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class humanScript : MonoBehaviour
 {
+    [SerializeField] private AudioClip damageSoundClip;
     public Animator aniLink;
     bool isScraed = false;
     public gameManager gameManagerLink;
@@ -29,6 +30,7 @@ public class humanScript : MonoBehaviour
             }
             else if(hitTag == "Attack")
             {
+                SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
                 Destroy(gameObject);
                 gameManagerLink.increaseScore(1000);
             }

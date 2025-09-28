@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8586237618972095284, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
+      propertyPath: damageSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e899ccc1f149f94d830b628edbf4e34, type: 3}
     - target: {fileID: 9027980763042629347, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
       propertyPath: m_Name
       value: Target (1)
@@ -297,6 +301,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8586237618972095284, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
+      propertyPath: damageSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e899ccc1f149f94d830b628edbf4e34, type: 3}
     - target: {fileID: 9027980763042629347, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
       propertyPath: m_Name
       value: Target (2)
@@ -1964,6 +1972,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8586237618972095284, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
+      propertyPath: damageSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e899ccc1f149f94d830b628edbf4e34, type: 3}
     - target: {fileID: 9027980763042629347, guid: d5c0ebd6a4fa78a48a62e5874ebab8db, type: 3}
       propertyPath: m_Name
       value: Target
